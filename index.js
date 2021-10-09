@@ -1,6 +1,6 @@
 import callsites from 'callsites';
 
-export default function callerCallsite({depth = 0} = {}) {
+export default function callerCallsite({depth = 0, recentFirst = false} = {}) {
 	const callers = [];
 	const callerFileSet = new Set();
 
@@ -8,13 +8,15 @@ export default function callerCallsite({depth = 0} = {}) {
 		const fileName = callsite.getFileName();
 		const hasReceiver = callsite.getTypeName() !== null && fileName !== null;
 
-		if (!callerFileSet.has(fileName)) {
+		if (recentFirst) {
+			callers.push(callsite);
+		} else if (!callerFileSet.has(fileName)) {
 			callerFileSet.add(fileName);
 			callers.unshift(callsite);
 		}
 
 		if (hasReceiver) {
-			return callers[depth];
+			return callers[depth + (recentFirst ? 1 : 0)];
 		}
 	}
 }

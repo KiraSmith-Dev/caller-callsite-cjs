@@ -33,6 +33,7 @@ export interface Options {
 	```
 	*/
 	readonly depth?: number;
+	readonly recentFirst?: boolean;
 }
 
 /**
