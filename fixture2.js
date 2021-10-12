@@ -1,5 +1,5 @@
-import fixture from './fixture.js';
+const fixture = require('./fixture.js');
 
-export default function fixture2({depth = 0, recentFirst = false} = {}) {
+module.exports = function ({depth = 0, recentFirst = false} = {}) {
 	return fixture({depth, recentFirst});
-}
+};

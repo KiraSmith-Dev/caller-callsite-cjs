@@ -12,17 +12,17 @@ npm install caller-callsite
 
 ```js
 // foo.js
-import callerCallsite from 'caller-callsite';
+const callerCallsite = require('caller-callsite');
 
-export default function foo() {
+module.exports = function () {
 	console.log(callerCallsite().getFileName());
 	//=> '/Users/sindresorhus/dev/unicorn/bar.js'
-}
+};
 ```
 
 ```js
 // bar.js
-import foo from './foo.js';
+const foo = require('./foo.js');
 foo();
 ```
 
@@ -47,30 +47,30 @@ For example:
 
 ```js
 // foo.js
-import callerCallsite from 'caller-callsite';
+const callerCallsite = require('caller-callsite');
 
-export default function foo() {
+module.exports = function () {
 	console.log(callerCallsite().getFileName());
 	//=> '/Users/sindresorhus/dev/unicorn/foobar.js'
 	console.log(callerCallsite({depth: 1}).getFileName());
 	//=> '/Users/sindresorhus/dev/unicorn/bar.js'
 	console.log(callerCallsite({depth: 2}).getFileName());
 	//=> '/Users/sindresorhus/dev/unicorn/foo.js'
-}
+};
 ```
 
 ```js
 // bar.js
-import foo from './foo.js';
+const foo = require('./foo.js');
 
-export default function foo() {
+module.exports = function () {
 	foo();
-}
+};
 ```
 
 ```js
 // foobar.js
-import bar from './bar.js';
+const bar = require('./bar.js');
 bar();
 ```
 

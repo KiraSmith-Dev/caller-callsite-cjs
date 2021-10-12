@@ -1,8 +1,8 @@
-import path from 'node:path';
-import test from 'ava';
-import fixture from './fixture.js';
-import fixture2 from './fixture2.js';
-import fixture3 from './fixture3.js';
+const path = require('node:path');
+const test = require('ava');
+const fixture = require('./fixture.js');
+const fixture2 = require('./fixture2.js');
+const fixture3 = require('./fixture3.js');
 
 test('main', t => {
 	t.is(path.basename(fixture().getFileName()), 'test.js');

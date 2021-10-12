@@ -1,6 +1,6 @@
-import callsites from 'callsites';
+const callsites = require('callsites');
 
-export default function callerCallsite({depth = 0, recentFirst = false} = {}) {
+module.exports = function ({depth = 0, recentFirst = false} = {}) {
 	const callers = [];
 	const callerFileSet = new Set();
 
@@ -19,4 +19,4 @@ export default function callerCallsite({depth = 0, recentFirst = false} = {}) {
 			return callers[depth + (recentFirst ? 1 : 0)];
 		}
 	}
-}
+};
